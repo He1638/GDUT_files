@@ -1,0 +1,11 @@
+Change Component Footprint: Designator=Q3 Old Footprint=ONSC-TO-225-3-77-09 New Footprint=ONSC-TO-225-3-77-09
+Change Component Footprint: Designator=Q4 Old Footprint=ONSC-TO-225-3-77-09 New Footprint=ONSC-TO-225-3-77-09
+Change Component Comment: Designator=Q3 Old Comment=BD788G New Comment=BD787G
+Change Component Comment: Designator=Q4 Old Comment=BD788G New Comment=BD787G
+Add Class Object Name=PWR
+Change Pin Designator/Name:  Old Designator=Q3-1 Old Name=E New Designator =B New Name=3
+Change Pin Designator/Name:  Old Designator=Q3-2 Old Name=C New Designator =E New Name=1
+Change Pin Designator/Name:  Old Designator=Q3-3 Old Name=B New Designator =C New Name=2
+Change Pin Designator/Name:  Old Designator=Q4-1 Old Name=E New Designator =B New Name=3
+Change Pin Designator/Name:  Old Designator=Q4-2 Old Name=C New Designator =E New Name=1
+Change Pin Designator/Name:  Old Designator=Q4-3 Old Name=B New Designator =C New Name=2
