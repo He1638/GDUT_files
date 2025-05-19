@@ -15,106 +15,35 @@ th6=0;
 DHfk6Dof_Lnya(th1,th2,th3,th4,th5,th6,0);
 view(134,12);
 pause;
-stp=30;
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Joint1
-for i=0:stp:180
-   DHfk6Dof_Lnya(th1+i,th2,th3,th4,th5,th6,1); 
-end
-for i=180:-stp:-180
-   DHfk6Dof_Lnya(th1+i,th2,th3,th4,th5,th6,1); 
-end
-for i=-180:stp:0
-    if i==0
-      DHfk6Dof_Lnya(th1+i,th2,th3,th4,th5,th6,0);  
-    else
-      DHfk6Dof_Lnya(th1+i,th2,th3,th4,th5,th6,1);
-    end
-end
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Joint2
+
+num=1;
+for i=1:20
+ figure(1);   
+DHfk6Dof_Lnya(th1,th2,th3,th4,th5,th6,0);
+J=Jacobian6DoF_Ln(th1,th2,th3,th4,th5,th6); 
+x=det(J) ;fprintf('x= %2.4f ',x);  
+xout(num)=x;
+t(num)=i;
+num=num+1;
+
+% dD=[20 0 0 0 0 0]';
+dD=[0 0 0 0 0 0.1]';
+dth=inv(J)*dD;
+th1=th1+dth(1)/pi*180;
+th2=th2+dth(2)/pi*180;
+th3=th3+dth(3)/pi*180;
+th4=th4+dth(4)/pi*180;
+th5=th5+dth(5)/pi*180;
+th6=th6+dth(6)/pi*180;
+
+% if i~=100
+%   DHfk_J_Puma560_Lnya(th1,th2,th3,th4,th5,th6,0);
+% else
+%   DHfk_J_Puma560_Lnya(th1,th2,th3,th4,th5,th6,0);
+% end
 
 
-for i=0:-stp:-155
-   DHfk6Dof_Lnya(th1,th2+i,th3,th4,th5,th6,1); 
-end
-for i=-155:stp:95
-   DHfk6Dof_Lnya(th1,th2+i,th3,th4,th5,th6,1); 
-end
-for i=95:-stp:0
-    if i==0
-      DHfk6Dof_Lnya(th1,th2+i,th3,th4,th5,th6,0);  
-    else
-      DHfk6Dof_Lnya(th1,th2+i,th3,th4,th5,th6,1); 
-    end
-end
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Joint3
-
-
-for i=0:-stp:-75
-  DHfk6Dof_Lnya(th1,th2,th3+i,th4,th5,th6,1); 
-end
-for i=-75:stp:180
-  DHfk6Dof_Lnya(th1,th2,th3+i,th4,th5,th6,1); 
-end
-for i=180:-stp:0
-    if i==0
-      DHfk6Dof_Lnya(th1,th2,th3+i,th4,th5,th6,0);  
-      
-    else
-      DHfk6Dof_Lnya(th1,th2,th3+i,th4,th5,th6,1); 
-    end 
-end
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Joint4
-
-
-for i=0:stp:175
-  DHfk6Dof_Lnya(th1,th2,th3,th4+i,th5,th6,1); 
-end
-for i=175:-stp:-175
-  DHfk6Dof_Lnya(th1,th2,th3,th4+i,th5,th6,1); 
-end
-for i=-175:stp:0
-    if i==0
-      DHfk6Dof_Lnya(th1,th2,th3,th4+i,th5,th6,0);  
-      
-    else
-      DHfk6Dof_Lnya(th1,th2,th3,th4+i,th5,th6,1); 
-    end 
-end
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Joint5
-
-
-for i=0:stp:120
-  DHfk6Dof_Lnya(th1,th2,th3,th4,th5+i,th6,1); 
-end
-for i=120:-stp:-120
-  DHfk6Dof_Lnya(th1,th2,th3,th4,th5+i,th6,1); 
-end
-for i=-120:stp:0
-    if i==0
-      DHfk6Dof_Lnya(th1,th2,th3,th4,th5+i,th6,0);  
-      
-    else
-      DHfk6Dof_Lnya(th1,th2,th3,th4,th5+i,th6,1); 
-    end 
-end
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Joint6
-
-
-for i=0:stp:400
-  DHfk6Dof_Lnya(th1,th2,th3,th4,th5,th6+i,1); 
-end
-for i=400:-stp:-400
-  DHfk6Dof_Lnya(th1,th2,th3,th4,th5,th6+i,1); 
-end
-for i=-400:stp:0
-    if i==0
-      DHfk6Dof_Lnya(th1,th2,th3,th4,th5,th6+i,0);  
-      
-    else
-      DHfk6Dof_Lnya(th1,th2,th3,th4,th5,th6+i,1); 
-    end 
+figure(3);
+axis([0,num,-5000000,5000000]);
+plot(t,xout,'r-O');hold on;
 end
